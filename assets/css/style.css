@@ -1109,3 +1109,29 @@ footer .inner-content p a {
 	color: white;
 	cursor: pointer;
 }
+
+.products_wrapper{
+	display: flex;
+	justify-content: space-around;
+	align-items:center ;
+	flex-wrap: wrap;
+}
+
+.product_image{
+	max-width: 320px;
+}
+
+.product_delete{
+	background-color: red;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 15px;
+	
+
+}
+
+.product_delete:hover{
+	background-color: purple;
+	color: white;
+
+}
