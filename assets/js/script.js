@@ -1,15 +1,9 @@
 'use strict';
 let product_imageDom =document.getElementById('product_image');
-//this is declare to place chekout product below it
+//this is declare to place checkout product below it
 let checkoutHeader = document.querySelector('.chekout_banner');
-// let display_product_containerDom = document.querySelectorAll('.display_product_container');
-// let product_priceDom =document.getElementById('product_price');
 let cart_Arr = localStorage.getItem('products')? JSON.parse(localStorage.getItem('products')): [];
 let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
-// console.log(cart_Arr);  
-
-//   /delete product from checkout page
-let product_delete = document.querySelector('#product_delete');
 
 
 
@@ -20,6 +14,7 @@ cart.forEach(item=>{
         numCart();
         getProductFromCart(e);
         displayCartProductToCheckPage();
+     
     })
 })
 
@@ -37,7 +32,7 @@ function  getProductFromCart(e){
        let parent = e.target.parentElement;
         //product image
        let product_image = parent.previousElementSibling.firstChild.src;
-       console.log(product_image);
+      
 
         //product price
         let product_price = parent.children[1].textContent.substr(1);
@@ -54,12 +49,14 @@ function  getProductFromCart(e){
     
    }
 
+
+
 //display product to checkout page
    function displayCartProductToCheckPage(){
     cart_Arr.forEach(item =>{     
         if(checkoutHeader){
             checkoutHeader.insertAdjacentHTML('afterend', `
-            <div class="conainer display_product_container">
+            <div class="container display_product_container">
                       <div class="products_wrapper" id ="${item.id}">
                           <div class="product_image_wrapper" id="product_image_wrapper">
                               <img class="product_image" id="product_image" src="${item.image}" alt="">
@@ -71,25 +68,38 @@ function  getProductFromCart(e){
                           </div>
 
                           
-                              <h3 class="product_delete" id="product_delete">Delete</h3>
+                              <h3 class="product_delete" id="product_delete" Onclick ='product_delete(event);'>Delete</h3>
                         
                       </div>
                       <hr>
       
                      
-             </div>`);
+             </div>`
+             );
         }
-
-        
-       
     })
    }
   
 
+   //delete product from checkout page
+    function product_delete(e){
+        let parent = e.target.parentElement;
+        let specific_product_to_delete = e.target.parentElement.id;
+         cart_Arr = cart_Arr.filter(removeItem => removeItem.id != specific_product_to_delete);
+         let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
+         parent.remove();
+         decreaseCartNum();
+  }
 
- 
- 
 
+  function decreaseCartNum(){
+    let productNum = +localStorage.getItem('numProduct');
+    if(productNum){
+        localStorage.setItem('numProduct', productNum - 1);
+    }
+    
+  }
+ 
 //show number of product in cart
 function numCart(){
     //Note: you can use parseInt to convert string to integer
@@ -124,4 +134,3 @@ var ID = function () {
 displayCartProductToCheckPage()
 
 
-//.substr(72)
