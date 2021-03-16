@@ -36,7 +36,8 @@ function  getProductFromCart(e){
    
        let parent = e.target.parentElement;
         //product image
-       let product_image = parent.previousElementSibling.firstChild.src.substr(72);
+       let product_image = parent.previousElementSibling.firstChild.src;
+       console.log(product_image);
 
         //product price
         let product_price = parent.children[1].textContent.substr(1);
@@ -121,3 +122,6 @@ var ID = function () {
 };
 
 displayCartProductToCheckPage()
+
+
+//.substr(72)
