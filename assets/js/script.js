@@ -89,6 +89,7 @@ function  getProductFromCart(e){
          let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
          parent.remove();
          decreaseCartNum();
+         addNumOfCartToCartDom();
   }
 
 
