@@ -2,18 +2,21 @@
 let product_imageDom =document.getElementById('product_image');
 //this is declare to place checkout product below it
 let checkoutHeader = document.querySelector('.chekout_banner');
+//get the price element
+let total_price =document.getElementById('Total_price');
 let cart_Arr = localStorage.getItem('products')? JSON.parse(localStorage.getItem('products')): [];
 let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
 
 
 
-
+//looping all the item to select each item clicked
 const cart = document.querySelectorAll('#add_to_cart');
 cart.forEach(item=>{
     item.addEventListener('click', (e)=>{
         numCart();
         getProductFromCart(e);
         displayCartProductToCheckPage();
+   
      
     })
 })
@@ -26,7 +29,7 @@ function  getProductFromCart(e){
     let cart_obj = {
         id:'',
         image:'',
-        price:' '
+        price:''
     };
    
        let parent = e.target.parentElement;
@@ -42,7 +45,7 @@ function  getProductFromCart(e){
     //  add values to the cart object
         cart_obj.id = product_id;
         cart_obj.image = product_image;
-        cart_obj.price = product_price;
+        cart_obj.price = +product_price;
         cart_Arr.push(cart_obj);
         let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
         alert('product added to cart');
@@ -76,6 +79,7 @@ function  getProductFromCart(e){
                      
              </div>`
              );
+             totalpriceProduct()
         }
     })
    }
@@ -90,6 +94,7 @@ function  getProductFromCart(e){
          parent.remove();
          decreaseCartNum();
          addNumOfCartToCartDom();
+         totalpriceProduct()
   }
 
 
@@ -127,6 +132,16 @@ function addNumOfCartToCartDom(){
 addNumOfCartToCartDom()
 
 
+//total price to display at the total element in checkout page 
+function totalpriceProduct(){
+   let totalLocalstorage = JSON.parse(localStorage.getItem('products'))
+    //total price of product
+    total_price.textContent= '$'+totalLocalstorage.reduce((a, b) => a + b.price, 0)
+  
+   
+}
+
+
 // unique id
 var ID = function () {
     return '_' + Math.random().toString(36).substr(2, 9);
@@ -135,3 +150,10 @@ var ID = function () {
 displayCartProductToCheckPage()
 
 
+// I promise I won't take it lightly and carelessly if granted the role.
+
+// --- The E-commerce website was developed with vanilla Javascript, with a PayPal payment system incorporated. Functionalities like clearing Cart, delete product were also added, etc.
+
+// ---  The social media web Apps was built with Javascript, jquery, PHP, OOP with several functionalities like posting, adding a comment, add friends, delete a post, etc
+
+// --- The Todos List App was developed using React.js. function like adding and removing your todos.
