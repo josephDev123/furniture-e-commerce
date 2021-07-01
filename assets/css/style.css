@@ -1113,6 +1113,7 @@ footer .inner-content p a {
 .display_product_container{
 	display: block;
 	transition: display 3s linear;
+	margin-top: 20px;
 }
 
 .products_wrapper{

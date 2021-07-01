@@ -70,7 +70,7 @@ function  getProductFromCart(e){
                           </div>
                             <h3 class="product_delete" id="product_delete" Onclick ='product_delete(event);'>Delete</h3>
                       </div>
-                      <hr>
+            <br> <br>
       
                      
              </div>`
