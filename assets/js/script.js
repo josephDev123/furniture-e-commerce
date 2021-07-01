@@ -65,14 +65,10 @@ function  getProductFromCart(e){
                               <img class="product_image" id="product_image" src="${item.image}" alt="">
                           </div>
                           
-                          
                           <div class="product_price_wrapper" id="product_price_wrapper">
                               <h3 class="product_price" id="product_price">$ ${item.price}</h3>
                           </div>
-
-                          
-                              <h3 class="product_delete" id="product_delete" Onclick ='product_delete(event);'>Delete</h3>
-                        
+                            <h3 class="product_delete" id="product_delete" Onclick ='product_delete(event);'>Delete</h3>
                       </div>
                       <hr>
       
@@ -92,6 +88,7 @@ function  getProductFromCart(e){
          cart_Arr = cart_Arr.filter(removeItem => removeItem.id != specific_product_to_delete);
          let setStorage = localStorage.setItem('products', JSON.stringify(cart_Arr));
          parent.remove();
+         parent.style.display = 'none';
          decreaseCartNum();
          addNumOfCartToCartDom();
          totalpriceProduct()
@@ -122,7 +119,7 @@ function numCart(){
 }
 
 
-//get the number of product in cart after thre browner refreshes
+//get the number of product in cart after the browner refreshes
 function addNumOfCartToCartDom(){
     let productNum = +localStorage.getItem('numProduct');
 
@@ -136,8 +133,8 @@ addNumOfCartToCartDom()
 function totalpriceProduct(){
    let totalLocalstorage = JSON.parse(localStorage.getItem('products'))
     //total price of product
-    total_price.textContent= '$'+totalLocalstorage.reduce((a, b) => a + b.price, 0)
-  
+    total_price.value= '$'+totalLocalstorage.reduce((a, b) => a + b.price, 0);
+    document.getElementById('price').textContent = total_price.value;
    
 }
 
@@ -149,11 +146,3 @@ var ID = function () {
 
 displayCartProductToCheckPage()
 
-
-// I promise I won't take it lightly and carelessly if granted the role.
-
-// --- The E-commerce website was developed with vanilla Javascript, with a PayPal payment system incorporated. Functionalities like clearing Cart, delete product were also added, etc.
-
-// ---  The social media web Apps was built with Javascript, jquery, PHP, OOP with several functionalities like posting, adding a comment, add friends, delete a post, etc
-
-// --- The Todos List App was developed using React.js. function like adding and removing your todos.

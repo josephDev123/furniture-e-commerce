@@ -1110,6 +1110,11 @@ footer .inner-content p a {
 	cursor: pointer;
 }
 
+.display_product_container{
+	display: block;
+	transition: display 3s linear;
+}
+
 .products_wrapper{
 	display: flex;
 	justify-content: space-around;
@@ -1134,4 +1139,15 @@ footer .inner-content p a {
 	background-color: purple;
 	color: white;
 
+}
+
+.paymentForm{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-items: center;
+}
+
+.paymentForm label{
+	display: block;
 }
